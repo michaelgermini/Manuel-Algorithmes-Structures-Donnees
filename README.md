@@ -63,7 +63,7 @@ Un **manuel pédagogique complet** d'algorithmique et structures de données dé
 
 | Page d'accueil | Tri Visuel | Listes Chaînées | Arbres Binaires |
 |:--------------:|:----------:|:---------------:|:---------------:|
-| ![Accueil Exercices](assets/interactive-exercises-home.svg) | ![Tri Visuel](assets/sorting-visualizer-interface.svg) | ![Listes Chaînées](assets/linked-list-visualizer-interface.svg) | ![Arbres Binaires](assets/binary-tree-visualizer-interface.svg) |
+| ![Accueil Exercices](https://raw.githubusercontent.com/michaelgermini/Manuel-Algorithmes-Structures-Donnees/main/assets/interactive-exercises-home.svg) | ![Tri Visuel](https://raw.githubusercontent.com/michaelgermini/Manuel-Algorithmes-Structures-Donnees/main/assets/sorting-visualizer-interface.svg) | ![Listes Chaînées](https://raw.githubusercontent.com/michaelgermini/Manuel-Algorithmes-Structures-Donnees/main/assets/linked-list-visualizer-interface.svg) | ![Arbres Binaires](https://raw.githubusercontent.com/michaelgermini/Manuel-Algorithmes-Structures-Donnees/main/assets/binary-tree-visualizer-interface.svg) |
 
 *Visualisations SVG détaillées des interfaces interactives*
 
@@ -71,7 +71,7 @@ Un **manuel pédagogique complet** d'algorithmique et structures de données dé
 
 <div align="center">
 
-![Interface Principale](assets/interactive-exercises-home.svg)
+![Interface Principale](https://raw.githubusercontent.com/michaelgermini/Manuel-Algorithmes-Structures-Donnees/main/assets/interactive-exercises-home.svg)
 
 *Page d'accueil des exercices interactifs avec grille responsive*
 
@@ -81,7 +81,7 @@ Un **manuel pédagogique complet** d'algorithmique et structures de données dé
 
 <div align="center">
 
-![Tri Visuel Détaillé](assets/sorting-visualizer-interface.svg)
+![Tri Visuel Détaillé](https://raw.githubusercontent.com/michaelgermini/Manuel-Algorithmes-Structures-Donnees/main/assets/sorting-visualizer-interface.svg)
 
 *Visualiseur de tri avec contrôles interactifs et statistiques temps réel*
 
