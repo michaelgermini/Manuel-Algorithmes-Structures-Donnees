@@ -61,11 +61,31 @@ Un **manuel pédagogique complet** d'algorithmique et structures de données dé
 
 #### 🎮 Exercices Interactifs en Action
 
-| Tri Visuel | Listes Chaînées | Arbres Binaires |
-|:----------:|:---------------:|:---------------:|
-| ![Tri Animation](https://via.placeholder.com/200x150/4CAF50/white?text=Tri+Animation) | ![Listes](https://via.placeholder.com/200x150/2196F3/white?text=Listes+Chaînées) | ![Arbres](https://via.placeholder.com/200x150/FF9800/white?text=Arbres+BST) |
+| Page d'accueil | Tri Visuel | Listes Chaînées | Arbres Binaires |
+|:--------------:|:----------:|:---------------:|:---------------:|
+| ![Accueil Exercices](assets/interactive-exercises-home.svg) | ![Tri Visuel](assets/sorting-visualizer-interface.svg) | ![Listes Chaînées](assets/linked-list-visualizer-interface.svg) | ![Arbres Binaires](assets/binary-tree-visualizer-interface.svg) |
 
-*Captures d'écran des visualisations interactives*
+*Visualisations SVG détaillées des interfaces interactives*
+
+#### 📱 Interface Utilisateur Moderne
+
+<div align="center">
+
+![Interface Principale](assets/interactive-exercises-home.svg)
+
+*Page d'accueil des exercices interactifs avec grille responsive*
+
+</div>
+
+#### 🔄 Tri Visuel en Action
+
+<div align="center">
+
+![Tri Visuel Détaillé](assets/sorting-visualizer-interface.svg)
+
+*Visualiseur de tri avec contrôles interactifs et statistiques temps réel*
+
+</div>
 
 </div>
 
