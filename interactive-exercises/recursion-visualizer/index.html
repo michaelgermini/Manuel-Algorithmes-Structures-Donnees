@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation de la Récursion - Exercice Interactif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../highlight-theme.css">
+    <script src="../highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔁 Visualisation de la Récursion</h1>
+            <p class="description">
+                Comprenez le mécanisme des appels récursifs avec la pile d'exécution et les animations pas à pas.
+            </p>
+        </header>
+
+        <div class="controls">
+            <div class="function-selection">
+                <label>Fonction récursive :</label>
+                <select id="functionSelect">
+                    <option value="factorial">Factorielle</option>
+                    <option value="fibonacci">Fibonacci</option>
+                    <option value="binarySearch">Recherche Binaire</option>
+                    <option value="towerOfHanoi">Tour de Hanoï</option>
+                    <option value="mergeSort">Tri Fusion</option>
+                    <option value="quickSort">Tri Rapide</option>
+                </select>
+                <button id="loadFunctionBtn" class="btn btn-primary">Charger</button>
+            </div>
+
+            <div class="input-controls">
+                <div class="input-group">
+                    <label for="inputValue">Paramètre :</label>
+                    <input type="number" id="inputValue" placeholder="Ex: 5" min="0" max="20">
+                </div>
+                <div class="control-buttons">
+                    <button id="stepBtn" class="btn btn-success">⏯️ Pas à pas</button>
+                    <button id="playBtn" class="btn btn-success">▶️ Exécuter</button>
+                    <button id="pauseBtn" class="btn btn-warning" disabled>⏸️ Pause</button>
+                    <button id="resetBtn" class="btn btn-danger">🔄 Réinitialiser</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-label">Appels récursifs :</span>
+                <span id="recursionDepth" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Profondeur max :</span>
+                <span id="maxDepth" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">État :</span>
+                <span id="executionState" class="stat-value">Prêt</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Résultat :</span>
+                <span id="result" class="stat-value">-</span>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <div class="recursion-stack">
+                <h3>📚 Pile d'Exécution</h3>
+                <div id="callStack" class="call-stack">
+                    <div class="empty-stack">Pile vide - Aucun appel en cours</div>
+                </div>
+            </div>
+
+            <div class="code-execution">
+                <h3>💻 Code en Exécution</h3>
+                <div id="codeDisplay" class="code-display">
+                    <pre><code>Sélectionnez une fonction pour voir son code...</code></pre>
+                </div>
+                <div id="currentLine" class="current-line-indicator">
+                    Ligne actuelle: <span id="lineNumber">-</span>
+                </div>
+            </div>
+
+            <div class="recursion-tree">
+                <h3>🌳 Arbre des Appels Récursifs</h3>
+                <div id="recursionTree" class="recursion-tree-container">
+                    <div class="empty-tree">Arbre vide - Lancez une exécution</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="operations-log">
+            <h3>📋 Journal d'Exécution</h3>
+            <div id="operationsLog" class="operations-log-content">
+                <p class="log-entry initial">Prêt pour l'exécution...</p>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2>📖 Théorie de la Récursion</h2>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h3>🔄 Principe Fondamental</h3>
+                    <ul>
+                        <li><strong>Cas de base</strong> : Condition d'arrêt</li>
+                        <li><strong>Cas récursif</strong> : Appel à soi-même</li>
+                        <li><strong>Pile d'exécution</strong> : Gestion des appels</li>
+                        <li><strong>Retour en cascade</strong> : Dépilement des résultats</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>⚠️ Risques et Limites</h3>
+                    <ul>
+                        <li><strong>Débordement de pile</strong> : Stack Overflow</li>
+                        <li><strong>Récursion infinie</strong> : Pas de cas de base</li>
+                        <li><strong>Performance</strong> : Overhead des appels</li>
+                        <li><strong>Limite de profondeur</strong> : Variable selon le langage</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>🎯 Avantages</h3>
+                    <ul>
+                        <li><strong>Code élégant</strong> : Solutions naturelles</li>
+                        <li><strong>Diviser pour régner</strong> : Problèmes complexes</li>
+                        <li><strong>Arbres et graphes</strong> : Structures récursives</li>
+                        <li><strong>Preuve par récurrence</strong> : Raisonnement mathématique</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercises-section">
+            <h2>🎯 Exercices Interactifs</h2>
+
+            <div class="exercise">
+                <h3>Exercice 1 : Factorielle et Pile d'Exécution</h3>
+                <p>Calculez factorielle(5) et observez :</p>
+                <ul>
+                    <li>Comment la pile se remplit et se vide</li>
+                    <li>L'ordre des appels et retours</li>
+                    <li>Le calcul en cascade des retours</li>
+                </ul>
+                <button onclick="loadFactorialExercise()" class="btn btn-primary">Charger Exercice 1</button>
+                <div id="factorialResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 2 : Fibonacci et Explosion Combinatoire</h3>
+                <p>Comparez fibonacci(6) récursif vs itératif :</p>
+                <ul>
+                    <li>Nombre d'appels récursifs explosif</li>
+                    <li>Calculs redondants identiques</li>
+                    <li>Optimisation par mémoïsation</li>
+                </ul>
+                <button onclick="loadFibonacciExercise()" class="btn btn-primary">Charger Exercice 2</button>
+                <div id="fibonacciResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 3 : Recherche Binaire Récursive</h3>
+                <p>Recherchez un élément dans [1,3,5,7,9,11,13,15] :</p>
+                <ul>
+                    <li>Diviser pour régner à chaque étape</li>
+                    <li>Réduction de l'espace de recherche</li>
+                    <li>Complexité logarithmique</li>
+                </ul>
+                <button onclick="loadBinarySearchExercise()" class="btn btn-primary">Charger Exercice 3</button>
+                <div id="binarySearchResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 4 : Tour de Hanoï - Complexité</h3>
+                <p>Résolvez la Tour de Hanoï avec 4 disques :</p>
+                <ul>
+                    <li>Stratégie récursive élégante</li>
+                    <li>Nombre de mouvements = 2^n - 1</li>
+                    <li>Visualisation des déplacements</li>
+                </ul>
+                <button onclick="loadHanoiExercise()" class="btn btn-primary">Charger Exercice 4</button>
+                <div id="hanoiResult"></div>
+            </div>
+        </div>
+
+        <!-- Section Chapitre Complet -->
+        <div class="chapter-content">
+            <h2>📖 Chapitre 4 - Récursion et Diviser pour Régner</h2>
+            <div class="chapter-text" id="chapter-content">
+                <!-- Le contenu du chapitre sera chargé ici -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-main">
+                <h3>🎓 Exercices Interactifs - Algorithmes et Structures de Données</h3>
+                <p><strong>Chapitre 4 - Récursion et Diviser pour Régner</strong></p>
+                <p>Explorez la récursion et les algorithmes diviser pour régner</p>
+            </div>
+
+            <div class="chapter-ref">
+                <p>
+                    <strong>📖 Référence complète :</strong> Chapitre 4 du manuel<br>
+                    <strong>🎯 Objectif :</strong> Comprendre la mécanique des appels récursifs et la pile d'exécution<br>
+                    <strong>⏱️ Durée estimée :</strong> 50 minutes<br>
+                    <strong>💡 Prérequis :</strong> Notions de base en programmation et fonctions
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-btn">🏠 Menu Principal</a>
+                <a href="../README.md" class="footer-btn">📚 Documentation</a>
+                <a href="../chapters/04-recursion-divide-conquer.md" class="footer-btn">📖 Chapitre Complet</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Manuel d'Algorithmes et Structures de Données</p>
+                <p>Créé avec ❤️ pour l'apprentissage de l'algorithmique</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../chapters-data.js"></script>
+    <script src="recursion-visualizer.js"></script>
+    <script src="../chapter-loader.js"></script>
+    <script>
+        // Initialiser Highlight.js pour la coloration syntaxique
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+
+        // Initialiser le chargeur de chapitre
+        initChapterLoader('04');
+    </script>
+</body>
+</html>
+
+

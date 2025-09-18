@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation des Graphes - Exercice Interactif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../highlight-theme.css">
+    <script src="../highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🕸️ Visualisation des Graphes</h1>
+            <p class="description">
+                Comprenez les parcours BFS et DFS avec des visualisations interactives.
+            </p>
+        </header>
+
+        <div class="controls">
+            <div class="graph-presets">
+                <label>Exemples de graphes :</label>
+                <select id="graphPreset">
+                    <option value="simple">Graphe Simple</option>
+                    <option value="tree">Arbre</option>
+                    <option value="cycle">Graphe avec Cycle</option>
+                    <option value="complex">Graphe Complexe</option>
+                </select>
+                <button id="loadPresetBtn" class="btn btn-secondary">Charger</button>
+            </div>
+
+            <div class="traversal-controls">
+                <label>Sommet de départ :</label>
+                <select id="startNode">
+                    <option value="A">A</option>
+                </select>
+                <button id="bfsBtn" class="btn btn-success">BFS (Parcours en Largeur)</button>
+                <button id="dfsBtn" class="btn btn-info">DFS (Parcours en Profondeur)</button>
+                <button id="resetBtn" class="btn btn-warning">Réinitialiser</button>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <canvas id="graphCanvas" width="800" height="500"></canvas>
+        </div>
+
+        <div class="info-panel">
+            <div class="traversal-steps">
+                <h3>Étapes du Parcours</h3>
+                <div id="stepsContainer">
+                    <p>Sélectionnez un algorithme pour voir les étapes...</p>
+                </div>
+            </div>
+
+            <div class="algorithm-info">
+                <h3>Informations</h3>
+                <div id="algorithmInfo">
+                    <p><strong>BFS (Breadth-First Search)</strong> : Explore couche par couche</p>
+                    <p><strong>DFS (Depth-First Search)</strong> : Explore en profondeur d'abord</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2>📖 Théorie des Parcours</h2>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h3>🔄 BFS - Parcours en Largeur</h3>
+                    <ul>
+                        <li>Utilise une <strong>file (queue)</strong></li>
+                        <li>Explore les voisins immédiats d'abord</li>
+                        <li>Trouve le <strong>plus court chemin</strong> en nombre d'arêtes</li>
+                        <li>Complexité : O(V + E)</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>📏 DFS - Parcours en Profondeur</h3>
+                    <ul>
+                        <li>Utilise une <strong>pile (stack)</strong></li>
+                        <li>Explore jusqu'au bout d'un chemin</li>
+                        <li>Bon pour détecter les <strong>cycles</strong></li>
+                        <li>Complexité : O(V + E)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercises-section">
+            <h2>🎯 Exercices Interactifs</h2>
+
+            <div class="exercise">
+                <h3>Exercice 1 : Comparaison BFS vs DFS</h3>
+                <p>Utilisez le graphe avec cycle pour observer :</p>
+                <ul>
+                    <li>Ordre de visite des nœuds</li>
+                    <li>Différences de comportement</li>
+                    <li>Quand utiliser chaque algorithme</li>
+                </ul>
+                <button onclick="loadCycleGraph()" class="btn btn-primary">Charger Graphe avec Cycle</button>
+                <div id="comparisonResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 2 : Détection de Cycles</h3>
+                <p>Testez la détection de cycles :</p>
+                <ul>
+                    <li>Avec le graphe cyclique</li>
+                    <li>Avec le graphe acyclique (arbre)</li>
+                    <li>Comprenez l'importance du coloriage</li>
+                </ul>
+                <button onclick="demonstrateCycleDetection()" class="btn btn-primary">Démontrer Détection</button>
+                <div id="cycleResult"></div>
+            </div>
+        </div>
+
+        <!-- Section Chapitre Complet -->
+        <div class="chapter-content">
+            <h2>📖 Chapitre 12 - Graphes</h2>
+            <div class="chapter-text" id="chapter-content">
+                <!-- Le contenu du chapitre sera chargé ici -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-main">
+                <h3>🎓 Exercices Interactifs - Algorithmes et Structures de Données</h3>
+                <p><strong>Chapitre 12 - Graphes</strong></p>
+                <p>Découvrez BFS et DFS dans les graphes</p>
+            </div>
+
+            <div class="chapter-ref">
+                <p>
+                    <strong>📖 Référence complète :</strong> Chapitre 12 du manuel<br>
+                    <strong>🎯 Objectif :</strong> Comprendre BFS et DFS visuellement<br>
+                    <strong>⏱️ Durée estimée :</strong> 55 minutes<br>
+                    <strong>💡 Prérequis :</strong> Notions de base en structures de données et algorithmes
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-btn">🏠 Menu Principal</a>
+                <a href="../README.md" class="footer-btn">📚 Documentation</a>
+                <a href="../chapters/12-graphs.md" class="footer-btn">📖 Chapitre Complet</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Manuel d'Algorithmes et Structures de Données</p>
+                <p>Créé avec ❤️ pour l'apprentissage de l'algorithmique</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../chapters-data.js"></script>
+    <script src="graph-visualizer.js"></script>
+    <script src="../chapter-loader.js"></script>
+    <script>
+        // Initialiser Highlight.js pour la coloration syntaxique
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+
+        // Initialiser le chargeur de chapitre
+        initChapterLoader('12');
+    </script>
+</body>
+</html>
+
+

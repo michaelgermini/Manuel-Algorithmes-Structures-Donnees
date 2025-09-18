@@ -1,0 +1,134 @@
+// Graphe de dépendances des chapitres du livre
+// Format GraphViz (DOT) - peut être visualisé avec Graphviz
+
+digraph dependencies {
+    // Configuration du graphe
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial"];
+
+    // Nœuds colorés par section
+    node [fillcolor="#e1f5fe"]; // Bleu clair - Fondations
+    intro [label="Chapitre 1\nIntroduction"];
+    tableaux [label="Chapitre 2\nTableaux & Tris"];
+
+    node [fillcolor="#e1f5fe"];
+    listes [label="Chapitre 3\nListes Chaînées"];
+
+    node [fillcolor="#e1f5fe"];
+    recursion [label="Chapitre 4\nRécursion"];
+
+    node [fillcolor="#f3e5f5"]; // Violet clair - Linéaires
+    piles [label="Chapitre 5\nPiles"];
+
+    node [fillcolor="#f3e5f5"];
+    files [label="Chapitre 6\nFiles"];
+
+    node [fillcolor="#fff3e0"]; // Orange clair - Avancées
+    hash [label="Chapitre 7\nTables de Hachage"];
+
+    node [fillcolor="#fff3e0"];
+    bst [label="Chapitre 8\nArbres BST"];
+
+    node [fillcolor="#fff3e0"];
+    avl [label="Chapitre 9\nArbres AVL"];
+
+    node [fillcolor="#fff3e0"];
+    redblack [label="Chapitre 10\nArbres Red-Black"];
+
+    node [fillcolor="#fff3e0"];
+    heaps [label="Chapitre 11\nTas Binaires"];
+
+    node [fillcolor="#e8f5e8"]; // Vert clair - Graphes
+    graphes [label="Chapitre 12\nGraphes"];
+
+    node [fillcolor="#e8f5e8"];
+    shortest [label="Chapitre 13\nPlus Court Chemin"];
+
+    node [fillcolor="#fce4ec"]; // Rose clair - Pratique
+    projets [label="Chapitre 14\nProjets"];
+
+    node [fillcolor="#fce4ec"];
+    quiz [label="Chapitre 15\nQuiz & Exercices"];
+
+    node [fillcolor="#fce4ec"];
+    glossaire [label="Chapitre 16\nGlossaire"];
+
+    // Dépendances principales (flèche = "dépend de")
+    intro -> tableaux;
+    tableaux -> listes;
+    listes -> recursion;
+    recursion -> piles;
+    piles -> files;
+    files -> hash;
+    hash -> bst;
+    bst -> avl;
+    bst -> redblack;
+    bst -> heaps;
+    heaps -> graphes;
+    graphes -> shortest;
+    shortest -> projets;
+    projets -> quiz;
+    quiz -> glossaire;
+
+    // Dépendances transversales
+    recursion -> bst [style=dashed, color=blue, label="Récursion"];
+    recursion -> heaps [style=dashed, color=blue];
+    recursion -> graphes [style=dashed, color=blue];
+    recursion -> shortest [style=dashed, color=blue];
+
+    listes -> piles [style=dashed, color=red, label="Implémentation"];
+    listes -> files [style=dashed, color=red];
+    listes -> hash [style=dashed, color=red];
+
+    bst -> graphes [style=dashed, color=green, label="Arbres"];
+    bst -> shortest [style=dashed, color=green];
+
+    heaps -> shortest [style=dashed, color=orange, label="Files priorité"];
+
+    // Sous-graphes pour regrouper par section
+    subgraph cluster_fondations {
+        label="Partie I - Fondations";
+        color=lightblue;
+        style=filled;
+        fillcolor=lightcyan;
+        intro; tableaux; listes; recursion;
+    }
+
+    subgraph cluster_lineaires {
+        label="Partie II - Linéaires";
+        color=lightblue;
+        style=filled;
+        fillcolor=lavender;
+        piles; files;
+    }
+
+    subgraph cluster_avancees {
+        label="Partie III - Avancées";
+        color=lightblue;
+        style=filled;
+        fillcolor=lightyellow;
+        hash; bst; avl; redblack; heaps;
+    }
+
+    subgraph cluster_graphes {
+        label="Partie IV - Graphes";
+        color=lightblue;
+        style=filled;
+        fillcolor=lightgreen;
+        graphes; shortest;
+    }
+
+    subgraph cluster_pratique {
+        label="Partie V - Pratique";
+        color=lightblue;
+        style=filled;
+        fillcolor=lightpink;
+        projets; quiz; glossaire;
+    }
+
+    // Métadonnées du graphe
+    labelloc="t";
+    label="Graphe de Dépendances - Manuel d'Algorithmes et Structures de Données";
+    fontsize=16;
+    fontname="Arial Bold";
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation des Tables de Hachage - Exercice Interactif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../highlight-theme.css">
+    <script src="../highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Visualisation des Tables de Hachage</h1>
+            <p class="description">
+                Comprenez le hachage, les collisions et les stratégies de résolution avec des animations interactives.
+            </p>
+        </header>
+
+        <div class="controls">
+            <div class="hash-config">
+                <div class="config-group">
+                    <label>Taille de la table :</label>
+                    <select id="tableSize">
+                        <option value="7">7 cases</option>
+                        <option value="11" selected>11 cases</option>
+                        <option value="17">17 cases</option>
+                        <option value="23">23 cases</option>
+                    </select>
+                </div>
+
+                <div class="config-group">
+                    <label>Fonction de hachage :</label>
+                    <select id="hashFunction">
+                        <option value="simple">Simple (somme)</option>
+                        <option value="djb2" selected>DJB2</option>
+                        <option value="sdbm">SDBM</option>
+                    </select>
+                </div>
+
+                <button id="resetTableBtn" class="btn btn-warning">🗑️ Réinitialiser</button>
+            </div>
+
+            <div class="operations">
+                <div class="input-group">
+                    <label for="keyInput">Clé :</label>
+                    <input type="text" id="keyInput" placeholder="Ex: pomme">
+                    <label for="valueInput">Valeur :</label>
+                    <input type="text" id="valueInput" placeholder="Ex: fruit">
+                </div>
+
+                <div class="action-buttons">
+                    <button id="insertBtn" class="btn btn-success">➕ Insérer</button>
+                    <button id="searchBtn" class="btn btn-info">🔍 Rechercher</button>
+                    <button id="deleteBtn" class="btn btn-danger">🗑️ Supprimer</button>
+                    <button id="loadDemoBtn" class="btn btn-secondary">🎯 Charger Démo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-label">Éléments :</span>
+                <span id="elementCount" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Collisions :</span>
+                <span id="collisionCount" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Taux de remplissage :</span>
+                <span id="loadFactor" class="stat-value">0%</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Opérations :</span>
+                <span id="operationCount" class="stat-value">0</span>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <div class="hash-table-container">
+                <div id="hashTable" class="hash-table">
+                    <!-- Les cases de la table seront créées dynamiquement -->
+                </div>
+            </div>
+
+            <div class="hash-info">
+                <div class="current-operation">
+                    <h3>🔄 Opération en cours</h3>
+                    <div id="operationDisplay" class="operation-display">
+                        <p>Prêt pour les opérations...</p>
+                    </div>
+                </div>
+
+                <div class="hash-details">
+                    <h3>📊 Détails du hachage</h3>
+                    <div id="hashDetails" class="hash-details-content">
+                        <p>Sélectionnez une clé pour voir son hash...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="operations-log">
+            <h3>📋 Journal des Opérations</h3>
+            <div id="operationsLog" class="operations-log-content">
+                <p class="log-entry initial">Table de hachage initialisée</p>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2>📖 Théorie des Tables de Hachage</h2>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h3>🔑 Fonction de Hachage</h3>
+                    <ul>
+                        <li>Transforme une clé en indice de tableau</li>
+                        <li>Doit être rapide et uniforme</li>
+                        <li>Différentes clés peuvent donner le même hash</li>
+                        <li>Exemples : DJB2, SDBM, FNV</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>💥 Collisions</h3>
+                    <ul>
+                        <li>Deux clés différentes → même indice</li>
+                        <li>Inévitables avec les bonnes fonctions</li>
+                        <li>Résolues par chaînage ou adressage ouvert</li>
+                        <li>Impactent les performances O(1) → O(n)</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>🔗 Stratégies de Résolution</h3>
+                    <table>
+                        <tr><th>Méthode</th><th>Avantages</th><th>Inconvénients</th></tr>
+                        <tr><td>Chaînage</td><td>Simple, flexible</td><td>Mémoire listes</td></tr>
+                        <tr><td>Adressage ouvert</td><td>Pas de pointeurs</td><td>Clustering, suppression</td></tr>
+                        <tr><td>Double hachage</td><td>Évite clustering</td><td>Complexe</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercises-section">
+            <h2>🎯 Exercices Interactifs</h2>
+
+            <div class="exercise">
+                <h3>Exercice 1 : Exploration des Collisions</h3>
+                <p>Testez différentes fonctions de hachage avec le même ensemble de clés :</p>
+                <ul>
+                    <li>Observez la distribution des valeurs de hash</li>
+                    <li>Comparez le nombre de collisions</li>
+                    <li>Analysez l'impact sur les performances</li>
+                </ul>
+                <button onclick="runCollisionAnalysis()" class="btn btn-primary">Analyser Collisions</button>
+                <div id="collisionResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 2 : Impact de la Taille</h3>
+                <p>Expérimentez avec différentes tailles de table :</p>
+                <ul>
+                    <li>Table trop petite : beaucoup de collisions</li>
+                    <li>Table trop grande : gaspillage mémoire</li>
+                    <li>Trouvez le bon équilibre</li>
+                </ul>
+                <button onclick="demonstrateSizeImpact()" class="btn btn-primary">Tester Tailles</button>
+                <div id="sizeResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 3 : Performance Comparative</h3>
+                <p>Comparez les opérations selon le taux de remplissage :</p>
+                <ul>
+                    <li>Table vide (0% remplie)</li>
+                    <li>Table moyennement remplie (50%)</li>
+                    <li>Table presque pleine (90%)</li>
+                </ul>
+                <button onclick="runPerformanceTest()" class="btn btn-primary">Test Performance</button>
+                <div id="performanceResult"></div>
+            </div>
+        </div>
+
+        <!-- Section Chapitre Complet -->
+        <div class="chapter-content">
+            <h2>📖 Chapitre 7 - Tables de Hachage</h2>
+            <div class="chapter-text" id="chapter-content">
+                <!-- Le contenu du chapitre sera chargé ici -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-main">
+                <h3>🎓 Exercices Interactifs - Algorithmes et Structures de Données</h3>
+                <p><strong>Chapitre 7 - Tables de Hachage</strong></p>
+                <p>Explorez le hachage et la résolution des collisions</p>
+            </div>
+
+            <div class="chapter-ref">
+                <p>
+                    <strong>📖 Référence complète :</strong> Chapitre 7 du manuel<br>
+                    <strong>🎯 Objectif :</strong> Comprendre le hachage et la résolution des collisions<br>
+                    <strong>⏱️ Durée estimée :</strong> 45 minutes<br>
+                    <strong>💡 Prérequis :</strong> Notions de base en algorithmes et structures de données
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-btn">🏠 Menu Principal</a>
+                <a href="../README.md" class="footer-btn">📚 Documentation</a>
+                <a href="../chapters/07-hash-tables.md" class="footer-btn">📖 Chapitre Complet</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Manuel d'Algorithmes et Structures de Données</p>
+                <p>Créé avec ❤️ pour l'apprentissage de l'algorithmique</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../chapters-data.js"></script>
+    <script src="hash-table-visualizer.js"></script>
+    <script src="../chapter-loader.js"></script>
+    <script>
+        // Initialiser Highlight.js pour la coloration syntaxique
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+
+        // Initialiser le chargeur de chapitre
+        initChapterLoader('07');
+    </script>
+</body>
+</html>
+
+
+

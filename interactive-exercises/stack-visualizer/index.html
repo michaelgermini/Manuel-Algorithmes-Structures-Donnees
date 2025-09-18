@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation des Piles (Stacks) - Exercice Interactif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../highlight-theme.css">
+    <script src="../highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Visualisation des Piles (Stacks)</h1>
+            <p class="description">
+                Comprenez le fonctionnement des piles LIFO (Last In, First Out) avec des visualisations interactives et des exercices pratiques.
+            </p>
+        </header>
+
+        <div class="demo-section">
+            <h2>🎮 Démonstration Interactive</h2>
+
+            <div class="controls">
+                <div class="input-group">
+                    <label for="pushInput">Valeur à empiler :</label>
+                    <input type="text" id="pushInput" placeholder="Ex: Pomme" maxlength="20">
+                    <button id="pushBtn" class="btn btn-success">📥 Empiler (Push)</button>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="popBtn" class="btn btn-danger">📤 Dépiler (Pop)</button>
+                    <button id="peekBtn" class="btn btn-info">👁️ Regarder (Peek)</button>
+                    <button id="clearBtn" class="btn btn-warning">🗑️ Vider</button>
+                </div>
+            </div>
+
+            <div class="visualization">
+                <div class="stack-container">
+                    <h3>Pile Actuelle</h3>
+                    <div id="stackVisualization" class="stack-visualization">
+                        <div class="empty-stack">
+                            <p>📭 Pile vide</p>
+                            <small>Cliquez sur "Empiler" pour ajouter des éléments</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="operations-log">
+                    <h3>📋 Journal des Opérations</h3>
+                    <div id="operationsLog" class="operations-log-content">
+                        <p class="log-entry initial">Bienvenue ! La pile est vide.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stack-info">
+                <div class="info-item">
+                    <span class="info-label">Taille de la pile :</span>
+                    <span id="stackSize" class="info-value">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Sommet de la pile :</span>
+                    <span id="stackTop" class="info-value">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Opérations effectuées :</span>
+                    <span id="operationCount" class="info-value">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2>📖 Théorie des Piles</h2>
+
+            <div class="theory-content">
+                <div class="concept">
+                    <h3>🔄 Principe LIFO</h3>
+                    <p><strong>Last In, First Out</strong> (Dernier arrivé, Premier sorti)</p>
+                    <p>Comme une pile d'assiettes : on empile toujours sur le dessus, on retire toujours du dessus.</p>
+                </div>
+
+                <div class="concept">
+                    <h3>⚡ Opérations Principales</h3>
+                    <ul>
+                        <li><strong>Push</strong> : Ajouter un élément au sommet</li>
+                        <li><strong>Pop</strong> : Retirer l'élément du sommet</li>
+                        <li><strong>Peek</strong> : Consulter le sommet sans retirer</li>
+                        <li><strong>isEmpty</strong> : Vérifier si la pile est vide</li>
+                    </ul>
+                </div>
+
+                <div class="concept">
+                    <h3>💻 Complexité</h3>
+                    <ul>
+                        <li><strong>Push</strong> : O(1)</li>
+                        <li><strong>Pop</strong> : O(1)</li>
+                        <li><strong>Peek</strong> : O(1)</li>
+                        <li><strong>Recherche</strong> : O(n)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="applications-section">
+            <h2>🌟 Applications Réelles des Piles</h2>
+
+            <div class="applications-grid">
+                <div class="application-card">
+                    <h3>💻 Annulation (Undo)</h3>
+                    <p>Chaque action est empilée. Annuler = dépiler la dernière action.</p>
+                    <button onclick="showUndoDemo()" class="btn btn-outline">Voir Démo</button>
+                </div>
+
+                <div class="application-card">
+                    <h3>🌐 Navigation Web</h3>
+                    <p>Historique de navigation : bouton "Précédent" = dépiler l'URL actuelle.</p>
+                    <button onclick="showBrowserDemo()" class="btn btn-outline">Voir Démo</button>
+                </div>
+
+                <div class="application-card">
+                    <h3>🔍 Vérification de Parentheses</h3>
+                    <p>Empiler les parenthèses ouvrantes, dépiler lors des fermantes.</p>
+                    <button onclick="showParenthesesDemo()" class="btn btn-outline">Voir Démo</button>
+                </div>
+
+                <div class="application-card">
+                    <h3>🎮 Jeu de Labyrinthe</h3>
+                    <p>Backtracking : empiler les positions, dépiler lors des culs-de-sac.</p>
+                    <button onclick="showMazeDemo()" class="btn btn-outline">Voir Démo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercises-section">
+            <h2>🎯 Exercices Interactifs</h2>
+
+            <div class="exercise">
+                <h3>Exercice 1 : Simulation d'Annulation</h3>
+                <p>Implémentez un système d'annulation simple :</p>
+                <ul>
+                    <li>Chaque action (écrire du texte) est enregistrée dans une pile</li>
+                    <li>Le bouton "Annuler" dépile la dernière action</li>
+                    <li>Testez avec différentes séquences d'actions</li>
+                </ul>
+                <div class="exercise-demo">
+                    <textarea id="textEditor" placeholder="Tapez du texte ici..." rows="3"></textarea>
+                    <div class="editor-controls">
+                        <button onclick="typeText()" class="btn btn-primary">Écrire "Hello"</button>
+                        <button onclick="undoText()" class="btn btn-danger">Annuler</button>
+                        <div id="undoHistory"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 2 : Évaluation d'Expressions Postfixées</h3>
+                <p>Évaluez l'expression : <code>3 4 + 5 *</code></p>
+                <p><strong>Règle :</strong> Opérandes d'abord, opérateurs après</p>
+                <div class="postfix-demo">
+                    <input type="text" id="postfixInput" placeholder="Ex: 3 4 + 5 *" readonly value="3 4 + 5 *">
+                    <button onclick="evaluatePostfix()" class="btn btn-success">Évaluer</button>
+                    <div id="postfixSteps"></div>
+                    <div id="postfixResult"></div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 3 : Vérification de Parentheses</h3>
+                <p>Testez différents ensembles de parenthèses :</p>
+                <div class="parentheses-tester">
+                    <input type="text" id="parenthesesInput" placeholder="Ex: ((2+3)*5)" value="((2+3)*5)">
+                    <button onclick="checkParentheses()" class="btn btn-info">Vérifier</button>
+                    <div id="parenthesesResult"></div>
+                </div>
+                <div class="test-cases">
+                    <p><strong>Cas de test :</strong></p>
+                    <ul>
+                        <li><code>()</code> → Valide</li>
+                        <li><code>( )</code> → Valide</li>
+                        <li><code>((2+3)*5)</code> → Valide</li>
+                        <li><code>(2+3))</code> → Invalide</li>
+                        <li><code>[{(2+3)*5}]</code> → Valide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Chapitre Complet -->
+        <div class="chapter-content">
+            <h2>📖 Chapitre 5 - Les Piles (Stacks)</h2>
+            <div class="chapter-text" id="chapter-content">
+                <!-- Le contenu du chapitre sera chargé ici -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-main">
+                <h3>🎓 Exercices Interactifs - Algorithmes et Structures de Données</h3>
+                <p><strong>Chapitre 5 - Les Piles (Stacks)</strong></p>
+                <p>Maîtrisez le principe LIFO avec les piles</p>
+            </div>
+
+            <div class="chapter-ref">
+                <p>
+                    <strong>📖 Référence complète :</strong> Chapitre 5 du manuel<br>
+                    <strong>🎯 Objectif :</strong> Comprendre le principe LIFO et les applications des piles<br>
+                    <strong>⏱️ Durée estimée :</strong> 35 minutes<br>
+                    <strong>💡 Prérequis :</strong> Notions de base en structures de données
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-btn">🏠 Menu Principal</a>
+                <a href="../README.md" class="footer-btn">📚 Documentation</a>
+                <a href="../chapters/05-stacks.md" class="footer-btn">📖 Chapitre Complet</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Manuel d'Algorithmes et Structures de Données</p>
+                <p>Créé avec ❤️ pour l'apprentissage de l'algorithmique</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../chapters-data.js"></script>
+    <script src="stack-visualizer.js"></script>
+    <script src="../chapter-loader.js"></script>
+    <script>
+        // Initialiser Highlight.js pour la coloration syntaxique
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+
+        // Initialiser le chargeur de chapitre
+        initChapterLoader('05');
+    </script>
+</body>
+</html>

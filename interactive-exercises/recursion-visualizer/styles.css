@@ -1,0 +1,1055 @@
+/* Styles pour le visualiseur de tris */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.description {
+    font-size: 1.1em;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.control-group label {
+    font-weight: bold;
+    color: #495057;
+    font-size: 0.9em;
+}
+
+.control-group select {
+    padding: 8px 12px;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1em;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* === STYLES DU FOOTER PROFESSIONNEL === */
+footer {
+    margin-top: 40px;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+footer strong {
+    color: #3498db;
+}
+
+footer .chapter-ref {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+footer .chapter-ref p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+footer .chapter-ref strong {
+    color: #ecf0f1;
+}
+
+.footer-main h3 {
+    color: #3498db;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.footer-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    font-size: 0.9em;
+}
+
+.footer-btn:hover {
+    background: rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.copyright {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #bdc3c7;
+    font-size: 0.85em;
+}
+
+.copyright p {
+    margin: 5px 0;
+}
+
+/* === STYLES Ã‰LÃ‰GANTS POUR LE CONTENU MARKDOWN === */
+.chapter-content {
+    margin-top: 50px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4CAF50, #45a049, #4CAF50);
+}
+
+.chapter-content h2 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.chapter-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    border-radius: 2px;
+}
+
+.chapter-text {
+    max-width: 100%;
+    line-height: 1.8;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+/* === HIÃ‰RARCHIE DES TITRES === */
+.chapter-text h1 {
+    color: #2c3e50;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin: 40px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4CAF50;
+    position: relative;
+}
+
+.chapter-text h1::before {
+    content: "ðŸ“š";
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+.chapter-text h2 {
+    color: #34495e;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 35px 0 18px 0;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    position: relative;
+}
+
+.chapter-text h2::before {
+    content: "ðŸŽ¯";
+    margin-right: 8px;
+}
+
+.chapter-text h3 {
+    color: #2c3e50;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 30px 0 15px 0;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(33, 150, 243, 0.3);
+    position: relative;
+}
+
+.chapter-text h3::before {
+    content: "âš¡";
+    margin-right: 8px;
+}
+
+.chapter-text h4 {
+    color: #e74c3c;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 25px 0 12px 0;
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    color: white;
+    border-radius: 6px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+}
+
+.chapter-text h4::before {
+    content: "ðŸ”¥";
+    margin-right: 6px;
+}
+
+.chapter-text h5 {
+    color: #9c27b0;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+    border-left: 4px solid #9c27b0;
+    padding-left: 15px;
+}
+
+.chapter-text h6 {
+    color: #607d8b;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 18px 0 8px 0;
+    font-style: italic;
+}
+
+/* === PARAGRAPHES ET TEXTE === */
+.chapter-text p {
+    margin-bottom: 20px;
+    color: #424242;
+    font-size: 1.05em;
+    text-align: justify;
+    hyphens: auto;
+    word-wrap: break-word;
+}
+
+.chapter-text p:first-child {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #2c3e50;
+    text-align: left;
+}
+
+.chapter-text strong {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.chapter-text em {
+    color: #666;
+    font-style: italic;
+}
+
+/* === CODE INLINE === */
+.chapter-text code {
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+    color: #c7254e;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    font-size: 0.9em;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.chapter-text code:hover {
+    background: linear-gradient(135deg, #e8e8e8, #d5d5d5);
+    transform: translateY(-1px);
+}
+
+/* === BLOCS DE CODE === */
+.chapter-text pre {
+    background: linear-gradient(135deg, #2d3748, #1a202c);
+    color: #e2e8f0;
+    padding: 25px;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 25px 0;
+    border-left: 5px solid #4CAF50;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.chapter-text pre::before {
+    content: "ðŸ’»";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.2em;
+    opacity: 0.7;
+}
+
+.chapter-text pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.chapter-text pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.chapter-text pre::-webkit-scrollbar-track {
+    background: #4a5568;
+    border-radius: 4px;
+}
+
+.chapter-text pre::-webkit-scrollbar-thumb {
+    background: #718096;
+    border-radius: 4px;
+}
+
+.chapter-text pre::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+/* === CITATIONS === */
+.chapter-text blockquote {
+    border-left: 5px solid #ffeb3b;
+    background: linear-gradient(135deg, #fffde7, #fff9c4);
+    padding: 20px 25px;
+    margin: 25px 0;
+    border-radius: 0 12px 12px 0;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(255, 235, 59, 0.2);
+}
+
+.chapter-text blockquote::before {
+    content: '"';
+    font-size: 4em;
+    color: #ffeb3b;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    font-family: 'Georgia', serif;
+    opacity: 0.3;
+}
+
+.chapter-text blockquote p {
+    margin: 0;
+    color: #f57f17;
+    font-style: italic;
+    font-size: 1.05em;
+    position: relative;
+    z-index: 1;
+}
+
+/* === LISTES === */
+.chapter-text ul,
+.chapter-text ol {
+    margin: 20px 0;
+    padding-left: 30px;
+    background: rgba(76, 175, 80, 0.05);
+    border-radius: 8px;
+    padding: 20px 30px;
+    border-left: 4px solid #4CAF50;
+}
+
+.chapter-text li {
+    margin-bottom: 12px;
+    color: #424242;
+    position: relative;
+    padding-left: 10px;
+}
+
+.chapter-text li::marker {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.chapter-text li:last-child {
+    margin-bottom: 0;
+}
+
+.chapter-text ul li::before {
+    content: "âœ“";
+    position: absolute;
+    left: -25px;
+    top: 0;
+    color: #4CAF50;
+    font-weight: bold;
+    background: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border: 2px solid #4CAF50;
+}
+
+/* === TABLEAUX === */
+.chapter-text table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.chapter-text th {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.chapter-text th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.chapter-text td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #424242;
+    transition: all 0.2s ease;
+}
+
+.chapter-text tr:nth-child(even) {
+    background: linear-gradient(135deg, #f8f9fa, #f1f3f4);
+}
+
+.chapter-text tr:nth-child(odd) {
+    background: white;
+}
+
+.chapter-text tr:hover {
+    background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+.chapter-text tr:hover td {
+    color: #2e7d32;
+}
+
+/* === LIENS === */
+.chapter-text a {
+    color: #2196F3;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.chapter-text a:hover {
+    color: #1976D2;
+    border-bottom-color: #2196F3;
+    text-decoration: none;
+}
+
+/* === EMPHASES SPÃ‰CIALES === */
+.chapter-text .emoji {
+    font-size: 1.3em;
+    margin: 0 5px;
+    vertical-align: middle;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .chapter-content {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .chapter-content h2 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .chapter-text {
+        font-size: 1em;
+        line-height: 1.6;
+    }
+
+    .chapter-text h1 {
+        font-size: 1.8em;
+    }
+
+    .chapter-text h2 {
+        font-size: 1.5em;
+        padding: 12px 15px;
+    }
+
+    .chapter-text h3 {
+        font-size: 1.3em;
+        padding: 10px 15px;
+    }
+
+    .chapter-text pre {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+
+    .chapter-text table {
+        font-size: 0.9em;
+    }
+
+    .chapter-text th,
+    .chapter-text td {
+        padding: 10px 12px;
+    }
+
+    .chapter-text ul,
+    .chapter-text ol {
+        padding: 15px 20px;
+    }
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #1e7e34;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #495057;
+}
+
+#status {
+    font-size: 1.2em;
+}
+
+.visualization {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    background: #ffffff;
+}
+
+#sortCanvas {
+    border: 3px solid #e9ecef;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.info-panel, .code-panel {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.info-panel h3, .code-panel h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+#algorithmInfo {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+.code-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: #e9ecef;
+    color: #495057;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    background: #dee2e6;
+}
+
+.tab-btn.active {
+    background: #4CAF50;
+    color: white;
+}
+
+#codeDisplay {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.exercises {
+    padding: 20px 30px;
+    background: #f8f9fa;
+}
+
+.exercises h3 {
+    color: #495057;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.exercise {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.exercise h4 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.exercise p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.exercise ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.exercise li {
+    margin-bottom: 5px;
+}
+
+.exercise-controls {
+    margin-top: 15px;
+}
+
+#userCode {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+#performanceResults, #algorithmExplanation, #userCodeResults {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    min-height: 50px;
+}
+
+footer {
+    background: #343a40;
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+footer strong {
+    color: #4CAF50;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.sorting-active .bar {
+    animation: pulse 0.5s infinite;
+}
+
+.bar {
+    transition: all 0.3s ease;
+}
+
+.bar.comparing {
+    background-color: #ffc107 !important;
+}
+
+.bar.swapping {
+    background-color: #dc3545 !important;
+}
+
+.bar.sorted {
+    background-color: #28a745 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .control-group {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 200px;
+    }
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .stat {
+        min-width: auto;
+    }
+
+    #sortCanvas {
+        width: 100%;
+        max-width: 600px;
+        height: 300px;
+    }
+}
+
+
+ Forcer tout le texte dans les blocs de code à être blanc */
+.chapter-text pre,
+.chapter-text pre code,
+.chapter-text pre * {
+    color: #000000 !important;
+    background: transparent !important;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* Désactiver complètement Highlight.js pour éviter les conflits */
+.chapter-text pre .hljs-comment,
+.chapter-text pre .hljs-keyword,
+.chapter-text pre .hljs-string,
+.chapter-text pre .hljs-number,
+.chapter-text pre .hljs-function,
+.chapter-text pre .hljs-variable,
+.chapter-text pre .hljs-title,
+.chapter-text pre .hljs-operator,
+.chapter-text pre .hljs-type {
+    color: #000000 !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+}
+
+
+/* === CSS DE QUALITÉ PROFESSIONNELLE === */
+
+/* === BLOCS DE CODE ÉLÉGANTS === */
+.chapter-text pre {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    color: #000000;
+    padding: 20px 25px;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-left: 4px solid #4CAF50;
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.3),
+        0 4px 15px rgba(0,0,0,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    line-height: 1.6;
+    font-size: 0.9em;
+}
+
+.chapter-text pre::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.2em;
+    opacity: 0.6;
+    color: #4CAF50;
+}
+
+.chapter-text pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    font-size: inherit;
+    line-height: inherit;
+    display: block;
+}
+
+/* === TEXTE STABLE ET LISIBLE === */
+.chapter-text pre,
+.chapter-text pre code,
+.chapter-text pre * {
+    color: #000000 !important;
+    background: transparent !important;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* === SCROLLBAR PERSONNALISÉ === */
+.chapter-text pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.chapter-text pre::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+.chapter-text pre::-webkit-scrollbar-thumb {
+    background: rgba(76, 175, 80, 0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.chapter-text pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(76, 175, 80, 0.8);
+}
+
+/* === EFFETS VISUELS MODERNES === */
+.chapter-text pre:hover {
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.4),
+        0 6px 20px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chapter-text pre:hover::before {
+    opacity: 0.8;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+

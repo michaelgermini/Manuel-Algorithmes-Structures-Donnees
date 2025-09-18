@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation des Algorithmes de Tri - Exercice Interactif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../highlight-theme.css">
+    <script src="../highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔄 Visualisation des Algorithmes de Tri</h1>
+            <p class="description">
+                Observez le fonctionnement des différents algorithmes de tri en temps réel.
+                Comparez leurs performances et comprenez leurs mécanismes.
+            </p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="algorithm">Algorithme :</label>
+                <select id="algorithm">
+                    <option value="bubble">Tri à Bulles (Bubble Sort)</option>
+                    <option value="insertion">Tri par Insertion</option>
+                    <option value="selection">Tri par Sélection</option>
+                    <option value="quick">Tri Rapide (Quick Sort)</option>
+                    <option value="merge">Tri Fusion (Merge Sort)</option>
+                    <option value="heap">Tri par Tas (Heap Sort)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="size">Taille du tableau :</label>
+                <select id="size">
+                    <option value="10">10 éléments</option>
+                    <option value="20" selected>20 éléments</option>
+                    <option value="30">30 éléments</option>
+                    <option value="50">50 éléments</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="speed">Vitesse :</label>
+                <select id="speed">
+                    <option value="500">Très lente</option>
+                    <option value="200">Lente</option>
+                    <option value="100" selected>Moyenne</option>
+                    <option value="50">Rapide</option>
+                    <option value="10">Très rapide</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="generateBtn" class="btn btn-primary">🎲 Générer Nouveau Tableau</button>
+            <button id="sortBtn" class="btn btn-success">▶️ Trier</button>
+            <button id="pauseBtn" class="btn btn-warning" disabled>⏸️ Pause</button>
+            <button id="resetBtn" class="btn btn-danger">🔄 Réinitialiser</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-label">Comparaisons :</span>
+                <span id="comparisons" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Échanges :</span>
+                <span id="swaps" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Temps écoulé :</span>
+                <span id="time" class="stat-value">0 ms</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">État :</span>
+                <span id="status" class="stat-value">Prêt</span>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <canvas id="sortCanvas" width="800" height="400"></canvas>
+        </div>
+
+        <div class="info-panel">
+            <h3>📋 Informations sur l'algorithme</h3>
+            <div id="algorithmInfo">
+                <p>Sélectionnez un algorithme pour voir ses caractéristiques.</p>
+            </div>
+        </div>
+
+        <div class="code-panel">
+            <h3>💻 Implémentation JavaScript</h3>
+            <div class="code-tabs">
+                <button class="tab-btn active" onclick="showCode('bubble')">Bubble Sort</button>
+                <button class="tab-btn" onclick="showCode('quick')">Quick Sort</button>
+                <button class="tab-btn" onclick="showCode('merge')">Merge Sort</button>
+            </div>
+            <pre id="codeDisplay"><code>// Sélectionnez un algorithme pour voir son code</code></pre>
+        </div>
+
+        <div class="exercises">
+            <h3>🎯 Exercices Interactifs</h3>
+            <div class="exercise">
+                <h4>Exercice 1 : Analyser les Performances</h4>
+                <p>Testez différents algorithmes avec la même taille de tableau et comparez :</p>
+                <ul>
+                    <li>Le nombre de comparaisons</li>
+                    <li>Le nombre d'échanges</li>
+                    <li>Le temps d'exécution</li>
+                </ul>
+                <div class="exercise-controls">
+                    <button onclick="runPerformanceTest()" class="btn btn-secondary">🚀 Lancer Test de Performance</button>
+                    <div id="performanceResults"></div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercice 2 : Comprendre le Fonctionnement</h4>
+                <p>Observez attentivement :</p>
+                <ul>
+                    <li>Comment évolue le tableau à chaque étape</li>
+                    <li>Quels éléments sont comparés à chaque itération</li>
+                    <li>Quelle est la stratégie de chaque algorithme</li>
+                </ul>
+                <div class="exercise-controls">
+                    <button onclick="showAlgorithmExplanation()" class="btn btn-secondary">📖 Montrer Explication</button>
+                    <div id="algorithmExplanation"></div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercice 3 : Implémentation Personnelle</h4>
+                <p>À partir de l'observation :</p>
+                <ul>
+                    <li>Implémentez votre propre version d'un algorithme de tri</li>
+                    <li>Testez-la avec différents tableaux</li>
+                    <li>Comparez avec les implémentations de référence</li>
+                </ul>
+                <div class="exercise-controls">
+                    <textarea id="userCode" placeholder="Collez votre code JavaScript ici..." rows="10"></textarea>
+                    <button onclick="testUserCode()" class="btn btn-secondary">🧪 Tester Mon Code</button>
+                    <div id="userCodeResults"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Chapitre Complet -->
+        <div class="chapter-content">
+            <h2>📖 Chapitre 2 - Tableaux et Algorithmes de Tri</h2>
+            <div class="chapter-text" id="chapter-content">
+                <!-- Le contenu du chapitre sera chargé ici -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-main">
+                <h3>🎓 Exercices Interactifs - Algorithmes et Structures de Données</h3>
+                <p><strong>Chapitre 2 - Tableaux et Algorithmes de Tri</strong></p>
+                <p>Maîtrisez les algorithmes de tri avec des visualisations interactives</p>
+            </div>
+
+            <div class="chapter-ref">
+                <p>
+                    <strong>📖 Référence complète :</strong> Chapitre 2 du manuel<br>
+                    <strong>🎯 Objectif :</strong> Comprendre visuellement le fonctionnement des algorithmes de tri<br>
+                    <strong>⏱️ Durée estimée :</strong> 45 minutes<br>
+                    <strong>💡 Prérequis :</strong> Notions de base en JavaScript et tableaux
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-btn">🏠 Menu Principal</a>
+                <a href="../README.md" class="footer-btn">📚 Documentation</a>
+                <a href="../chapters/02-arrays-sorting.md" class="footer-btn">📖 Chapitre Complet</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Manuel d'Algorithmes et Structures de Données</p>
+                <p>Créé avec ❤️ pour l'apprentissage de l'algorithmique</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../chapters-data.js"></script>
+    <script src="sorting-visualizer.js"></script>
+    <script src="../chapter-loader.js"></script>
+    <script>
+        // Initialiser Highlight.js pour la coloration syntaxique
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+
+        // Initialiser le chargeur de chapitre
+        initChapterLoader('02');
+    </script>
+</body>
+</html>

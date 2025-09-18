@@ -1,0 +1,260 @@
+{
+  "titre": "Algorithmes et Structures de Données - Manuel Complet",
+  "description": "Manuel pédagogique complet sur les algorithmes et structures de données en JavaScript",
+  "auteur": "Généré automatiquement",
+  "version": "1.0",
+  "date_creation": "2025",
+  "structure": {
+    "parties": [
+      {
+        "numero": 1,
+        "titre": "Fondations",
+        "description": "Bases algorithmiques et structures simples",
+        "couleur": "#e1f5fe",
+        "chapitres": [
+          {
+            "numero": 1,
+            "titre": "Introduction",
+            "fichier": "01-introduction.md",
+            "description": "Notations, complexité, Grand O, premières notions",
+            "concepts_cles": ["Complexité", "Big O", "Analyse temporelle"],
+            "dependances": [],
+            "difficulte": "Débutant",
+            "lignes_code": 150,
+            "exercices": 5
+          },
+          {
+            "numero": 2,
+            "titre": "Tableaux et Tris",
+            "fichier": "02-arrays-sorting.md",
+            "description": "Simples, fusion, rapides, linéaires",
+            "concepts_cles": ["Tri bulle", "Tri fusion", "Tri rapide", "Recherche binaire"],
+            "dependances": [1],
+            "difficulte": "Débutant",
+            "lignes_code": 200,
+            "exercices": 8
+          },
+          {
+            "numero": 3,
+            "titre": "Listes Chaînées",
+            "fichier": "03-linked-lists.md",
+            "description": "Simplement et doublement chaînées",
+            "concepts_cles": ["Nœuds", "Pointeurs", "Opérations CRUD", "Détection de cycle"],
+            "dependances": [2],
+            "difficulte": "Intermédiaire",
+            "lignes_code": 180,
+            "exercices": 6
+          },
+          {
+            "numero": 4,
+            "titre": "Récursion & Diviser pour Régner",
+            "fichier": "04-recursion-divide-conquer.md",
+            "description": "Stratégies fondamentales",
+            "concepts_cles": ["Fonctions récursives", "Pile d'appel", "Mémoïsation", "Divide & Conquer"],
+            "dependances": [1, 3],
+            "difficulte": "Intermédiaire",
+            "lignes_code": 160,
+            "exercices": 7
+          }
+        ]
+      },
+      {
+        "numero": 2,
+        "titre": "Structures Linéaires",
+        "description": "Piles, files et leurs applications",
+        "couleur": "#f3e5f5",
+        "chapitres": [
+          {
+            "numero": 5,
+            "titre": "Piles (Stacks)",
+            "fichier": "05-stacks.md",
+            "description": "LIFO, implémentation, cas d'usage",
+            "concepts_cles": ["LIFO", "Push/Pop/Peek", "Applications", "Implémentations"],
+            "dependances": [3, 4],
+            "difficulte": "Débutant",
+            "lignes_code": 120,
+            "exercices": 5
+          },
+          {
+            "numero": 6,
+            "titre": "Files (Queues)",
+            "fichier": "06-queues.md",
+            "description": "FIFO, implémentation, applications",
+            "concepts_cles": ["FIFO", "Enqueue/Dequeue", "Files de priorité", "Applications"],
+            "dependances": [3, 4],
+            "difficulte": "Débutant",
+            "lignes_code": 140,
+            "exercices": 6
+          }
+        ]
+      },
+      {
+        "numero": 3,
+        "titre": "Structures de Données Avancées",
+        "description": "Tables de hachage et arbres équilibrés",
+        "couleur": "#fff3e0",
+        "chapitres": [
+          {
+            "numero": 7,
+            "titre": "Tables de Hachage",
+            "fichier": "07-hash-tables.md",
+            "description": "Hachage, collisions, adressage",
+            "concepts_cles": ["Fonctions de hachage", "Chaînage", "Adressage ouvert", "Complexité O(1)"],
+            "dependances": [1, 2],
+            "difficulte": "Intermédiaire",
+            "lignes_code": 160,
+            "exercices": 4
+          },
+          {
+            "numero": 8,
+            "titre": "Arbres Binaires de Recherche",
+            "fichier": "08-binary-search-trees.md",
+            "description": "Insertion, recherche, suppression",
+            "concepts_cles": ["Propriété BST", "Parcours", "Opérations CRUD", "Complexité O(log n)"],
+            "dependances": [3, 4],
+            "difficulte": "Intermédiaire",
+            "lignes_code": 180,
+            "exercices": 5
+          },
+          {
+            "numero": 9,
+            "titre": "Arbres AVL",
+            "fichier": "09-avl-trees.md",
+            "description": "Équilibrage automatique, rotations",
+            "concepts_cles": ["Facteur d'équilibre", "Rotations", "Rééquilibrage", "Hauteur équilibrée"],
+            "dependances": [8],
+            "difficulte": "Avancé",
+            "lignes_code": 200,
+            "exercices": 3
+          },
+          {
+            "numero": 10,
+            "titre": "Arbres Rouges-Noirs",
+            "fichier": "10-red-black-trees.md",
+            "description": "Équilibrage flexible, applications",
+            "concepts_cles": ["Propriétés 5 règles", "Rééquilibrage", "Applications système", "Équilibre statistique"],
+            "dependances": [8],
+            "difficulte": "Avancé",
+            "lignes_code": 220,
+            "exercices": 3
+          },
+          {
+            "numero": 11,
+            "titre": "Tas Binaires",
+            "fichier": "11-binary-heaps.md",
+            "description": "Structure et opérations, HeapSort",
+            "concepts_cles": ["Max-Heap/Min-Heap", "Heapify", "Tri par tas", "Files de priorité"],
+            "dependances": [2, 8],
+            "difficulte": "Intermédiaire",
+            "lignes_code": 170,
+            "exercices": 4
+          }
+        ]
+      },
+      {
+        "numero": 4,
+        "titre": "Graphes et Algorithmes",
+        "description": "Théorie des graphes et algorithmes associés",
+        "couleur": "#e8f5e8",
+        "chapitres": [
+          {
+            "numero": 12,
+            "titre": "Graphes",
+            "fichier": "12-graphs.md",
+            "description": "Représentation, parcours BFS/DFS",
+            "concepts_cles": ["Sommets/Arêtes", "Représentations", "BFS/DFS", "Applications"],
+            "dependances": [3, 4, 5, 6],
+            "difficulte": "Avancé",
+            "lignes_code": 140,
+            "exercices": 4
+          },
+          {
+            "numero": 13,
+            "titre": "Plus Court Chemin",
+            "fichier": "13-shortest-path.md",
+            "description": "Dijkstra, A*, Bellman-Ford",
+            "concepts_cles": ["Graphes pondérés", "Dijkstra", "A* heuristique", "Bellman-Ford"],
+            "dependances": [11, 12],
+            "difficulte": "Avancé",
+            "lignes_code": 180,
+            "exercices": 3
+          }
+        ]
+      },
+      {
+        "numero": 5,
+        "titre": "Projets Pratiques",
+        "description": "Application des concepts dans des projets concrets",
+        "couleur": "#fce4ec",
+        "chapitres": [
+          {
+            "numero": 14,
+            "titre": "Projets et Applications",
+            "fichier": "14-projects.md",
+            "description": "Visualisation A*, mini-moteur de recherche",
+            "concepts_cles": ["Projets complets", "Visualisation", "Applications réelles", "Intégration"],
+            "dependances": [12, 13],
+            "difficulte": "Variable",
+            "lignes_code": 300,
+            "exercices": 2
+          }
+        ]
+      },
+      {
+        "numero": 6,
+        "titre": "Annexes",
+        "description": "Révision et référence",
+        "couleur": "#fce4ec",
+        "chapitres": [
+          {
+            "numero": 15,
+            "titre": "Quiz et Exercices",
+            "fichier": "15-quizzes-exercises.md",
+            "description": "Révision par chapitre",
+            "concepts_cles": ["Quiz", "Exercices corrigés", "Problèmes avancés"],
+            "dependances": ["all"],
+            "difficulte": "Variable",
+            "lignes_code": 50,
+            "exercices": 50
+          },
+          {
+            "numero": 16,
+            "titre": "Glossaire",
+            "fichier": "16-glossary.md",
+            "description": "Termes essentiels",
+            "concepts_cles": ["Définitions", "Terminologie", "Référence"],
+            "dependances": [],
+            "difficulte": "Tous niveaux",
+            "lignes_code": 0,
+            "exercices": 0
+          }
+        ]
+      }
+    ],
+    "metriques": {
+      "total_chapitres": 16,
+      "total_lignes_code": 2450,
+      "total_exercices": 110,
+      "langages": ["JavaScript"],
+      "difficulte_repartition": {
+        "debutant": 6,
+        "intermediaire": 6,
+        "avance": 4
+      }
+    },
+    "parcours_apprentissage": {
+      "debutant": [1, 2, 3, 5, 6, 7, 8, 15, 16],
+      "intermediaire": [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 16],
+      "avance": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      "specialise_systemes": [8, 9, 10, 11],
+      "specialise_jeux": [12, 13, 14],
+      "specialise_web": [7, 12, 14]
+    },
+    "technologies": {
+      "langage_principal": "JavaScript (ES6+)",
+      "visualisation": "Canvas API",
+      "format": "Markdown",
+      "execution": "Node.js"
+    }
+  }
+}

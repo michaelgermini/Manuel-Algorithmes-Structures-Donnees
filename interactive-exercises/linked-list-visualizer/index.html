@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation des Listes Chaînées - Exercice Interactif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../highlight-theme.css">
+    <script src="../highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 Visualisation des Listes Chaînées</h1>
+            <p class="description">
+                Comprenez le fonctionnement des listes simplement et doublement chaînées avec des animations interactives.
+            </p>
+        </header>
+
+        <div class="controls">
+            <div class="list-type-controls">
+                <label>Type de liste :</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="listType" value="singly" checked> Simplement chaînée</label>
+                    <label><input type="radio" name="listType" value="doubly"> Doublement chaînée</label>
+                </div>
+                <button id="resetListBtn" class="btn btn-warning">🗑️ Réinitialiser</button>
+            </div>
+
+            <div class="operation-controls">
+                <div class="input-group">
+                    <label for="valueInput">Valeur :</label>
+                    <input type="text" id="valueInput" placeholder="Ex: Pomme">
+                    <button id="insertFrontBtn" class="btn btn-success">➕ Début</button>
+                    <button id="insertEndBtn" class="btn btn-success">➕ Fin</button>
+                </div>
+
+                <div class="position-controls">
+                    <label for="positionInput">Position :</label>
+                    <input type="number" id="positionInput" placeholder="Ex: 2" min="0">
+                    <button id="insertAtBtn" class="btn btn-success">➕ Position</button>
+                    <button id="removeAtBtn" class="btn btn-danger">➖ Position</button>
+                </div>
+
+                <div class="search-controls">
+                    <button id="searchBtn" class="btn btn-info">🔍 Rechercher</button>
+                    <button id="reverseBtn" class="btn btn-secondary">🔄 Inverser</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-label">Taille :</span>
+                <span id="listSize" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Type :</span>
+                <span id="listTypeDisplay" class="stat-value">Simplement chaînée</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Opérations :</span>
+                <span id="operationCount" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">État :</span>
+                <span id="listStatus" class="stat-value">Vide</span>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <div class="linked-list-container">
+                <div class="null-node start-null">NULL</div>
+                <div id="linkedList" class="linked-list">
+                    <!-- Les nœuds seront ajoutés ici dynamiquement -->
+                </div>
+                <div class="null-node end-null">NULL</div>
+            </div>
+
+            <div class="pointers-section">
+                <div class="pointer-info">
+                    <div class="pointer-item">
+                        <span class="pointer-label">Tête (Head) :</span>
+                        <span id="headPointer" class="pointer-value">NULL</span>
+                    </div>
+                    <div class="pointer-item">
+                        <span class="pointer-label">Queue (Tail) :</span>
+                        <span id="tailPointer" class="pointer-value">NULL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="operations-log">
+            <h3>📋 Journal des Opérations</h3>
+            <div id="operationsLog" class="operations-log-content">
+                <p class="log-entry initial">Liste initialisée - Prêt pour les opérations !</p>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2>📖 Théorie des Listes Chaînées</h2>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h3>🔗 Liste Simplement Chaînée</h3>
+                    <ul>
+                        <li>Chaque nœud pointe vers le suivant</li>
+                        <li>Insertion/déletion facile au début</li>
+                        <li>Parcours unidirectionnel</li>
+                        <li>Mémoire : 1 pointeur par nœud</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>🔄 Liste Doublement Chaînée</h3>
+                    <ul>
+                        <li>Chaque nœud pointe vers précédent et suivant</li>
+                        <li>Insertion/déletion facile partout</li>
+                        <li>Parcours bidirectionnel</li>
+                        <li>Mémoire : 2 pointeurs par nœud</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>⚡ Complexité des Opérations</h3>
+                    <table>
+                        <tr><th>Opération</th><th>Début</th><th>Position</th><th>Fin</th></tr>
+                        <tr><td>Insertion</td><td>O(1)</td><td>O(n)</td><td>O(1)*</td></tr>
+                        <tr><td>Suppression</td><td>O(1)</td><td>O(n)</td><td>O(1)*</td></tr>
+                        <tr><td>Recherche</td><td>-</td><td>O(n)</td><td>-</td></tr>
+                    </table>
+                    <small>* Avec pointeur vers la queue</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercises-section">
+            <h2>🎯 Exercices Interactifs</h2>
+
+            <div class="exercise">
+                <h3>Exercice 1 : Construction d'une Liste</h3>
+                <p>Construisez une liste chaînée avec les éléments suivants dans l'ordre :</p>
+                <div class="exercise-values">"Chat" → "Chien" → "Oiseau" → "Poisson"</div>
+                <button onclick="loadExercise1()" class="btn btn-primary">Charger l'exercice</button>
+                <div id="exercise1Result"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 2 : Opérations CRUD</h3>
+                <p>À partir d'une liste ["A", "B", "C", "D"], effectuez :</p>
+                <ul>
+                    <li>Insérer "X" au début</li>
+                    <li>Supprimer l'élément à la position 2</li>
+                    <li>Inverser la liste</li>
+                </ul>
+                <button onclick="loadExercise2()" class="btn btn-primary">Charger l'exercice</button>
+                <div id="exercise2Result"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 3 : Comparaison Simplement vs Doublement</h3>
+                <p>Testez les mêmes opérations sur les deux types de listes :</p>
+                <ul>
+                    <li>Insertion au milieu (position 3)</li>
+                    <li>Suppression du dernier élément</li>
+                    <li>Parcours en sens inverse (si possible)</li>
+                </ul>
+                <button onclick="demonstrateComparison()" class="btn btn-primary">Démontrer Comparaison</button>
+                <div id="comparisonResult"></div>
+            </div>
+        </div>
+
+        <!-- Section Chapitre Complet -->
+        <div class="chapter-content">
+            <h2>📖 Chapitre 3 - Listes Chaînées</h2>
+            <div class="chapter-text" id="chapter-content">
+                <!-- Le contenu du chapitre sera chargé ici -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-main">
+                <h3>🎓 Exercices Interactifs - Algorithmes et Structures de Données</h3>
+                <p><strong>Chapitre 3 - Listes Chaînées</strong></p>
+                <p>Découvrez les structures de données chaînées et leurs opérations</p>
+            </div>
+
+            <div class="chapter-ref">
+                <p>
+                    <strong>📖 Référence complète :</strong> Chapitre 3 du manuel<br>
+                    <strong>🎯 Objectif :</strong> Comprendre les listes simplement et doublement chaînées<br>
+                    <strong>⏱️ Durée estimée :</strong> 40 minutes<br>
+                    <strong>💡 Prérequis :</strong> Notions de base en programmation et pointeurs
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-btn">🏠 Menu Principal</a>
+                <a href="../README.md" class="footer-btn">📚 Documentation</a>
+                <a href="../chapters/03-linked-lists.md" class="footer-btn">📖 Chapitre Complet</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Manuel d'Algorithmes et Structures de Données</p>
+                <p>Créé avec ❤️ pour l'apprentissage de l'algorithmique</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../chapters-data.js"></script>
+    <script src="linked-list-visualizer.js"></script>
+    <script src="../chapter-loader.js"></script>
+    <script>
+        // Initialiser Highlight.js pour la coloration syntaxique
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+
+        // Initialiser le chargeur de chapitre
+        initChapterLoader('03');
+    </script>
+</body>
+</html>
+

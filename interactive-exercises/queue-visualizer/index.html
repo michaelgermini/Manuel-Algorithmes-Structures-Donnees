@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation des Files d'Attente - Exercice Interactif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../highlight-theme.css">
+    <script src="../highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Visualisation des Files d'Attente</h1>
+            <p class="description">
+                Comprenez le fonctionnement FIFO des files et files de priorité avec des animations interactives.
+            </p>
+        </header>
+
+        <div class="controls">
+            <div class="queue-type-controls">
+                <label>Type de file :</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="queueType" value="fifo" checked> File FIFO</label>
+                    <label><input type="radio" name="queueType" value="priority"> File de Priorité</label>
+                </div>
+                <button id="resetQueueBtn" class="btn btn-warning">🗑️ Réinitialiser</button>
+            </div>
+
+            <div class="operation-controls">
+                <div class="input-group">
+                    <label for="valueInput">Valeur :</label>
+                    <input type="text" id="valueInput" placeholder="Ex: Client A">
+                    <button id="enqueueBtn" class="btn btn-success">➕ Enfiler (Enqueue)</button>
+                </div>
+
+                <div class="priority-controls" id="priorityControls" style="display: none;">
+                    <label for="priorityInput">Priorité :</label>
+                    <input type="number" id="priorityInput" placeholder="1-10" min="1" max="10" value="5">
+                </div>
+
+                <div class="action-buttons">
+                    <button id="dequeueBtn" class="btn btn-danger">➖ Défiler (Dequeue)</button>
+                    <button id="peekBtn" class="btn btn-info">👁️ Regarder (Peek)</button>
+                    <button id="simulateBtn" class="btn btn-secondary">🎭 Simulation File</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-label">Taille :</span>
+                <span id="queueSize" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Type :</span>
+                <span id="queueTypeDisplay" class="stat-value">File FIFO</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Front :</span>
+                <span id="queueFront" class="stat-value">-</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Rear :</span>
+                <span id="queueRear" class="stat-value">-</span>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <div class="queue-container">
+                <div class="queue-front-label">FRONT</div>
+                <div id="queueVisualization" class="queue-visualization">
+                    <div class="empty-queue">
+                        <p>📭 File vide</p>
+                        <small>Cliquez sur "Enfiler" pour ajouter des éléments</small>
+                    </div>
+                </div>
+                <div class="queue-rear-label">REAR</div>
+            </div>
+
+            <div class="simulation-panel" id="simulationPanel" style="display: none;">
+                <h3>🎭 Simulation de File d'Attente</h3>
+                <div class="simulation-controls">
+                    <button id="addCustomerBtn" class="btn btn-success">👤 Nouveau Client</button>
+                    <button id="serveCustomerBtn" class="btn btn-primary">🍽️ Servir Client</button>
+                    <button id="autoSimulateBtn" class="btn btn-secondary">▶️ Simulation Auto</button>
+                </div>
+                <div id="simulationStats" class="simulation-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Clients servis :</span>
+                        <span id="servedCount" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Temps d'attente moyen :</span>
+                        <span id="avgWaitTime" class="stat-value">0s</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="operations-log">
+            <h3>📋 Journal des Opérations</h3>
+            <div id="operationsLog" class="operations-log-content">
+                <p class="log-entry initial">File initialisée - Prêt pour les opérations !</p>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2>📖 Théorie des Files d'Attente</h2>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h3>🔄 File FIFO (Queue)</h3>
+                    <ul>
+                        <li>Principe <strong>First In, First Out</strong></li>
+                        <li>Insertion à l'arrière (rear)</li>
+                        <li>Suppression à l'avant (front)</li>
+                        <li>Applications : traitement séquentiel</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>⭐ File de Priorité</h3>
+                    <ul>
+                        <li>Éléments sortis selon leur priorité</li>
+                        <li>Utilise généralement un tas binaire</li>
+                        <li>Insertion et extraction : O(log n)</li>
+                        <li>Applications : ordonnancement, triage</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3>⚡ Complexité des Opérations</h3>
+                    <table>
+                        <tr><th>Opération</th><th>File Simple</th><th>File de Priorité</th></tr>
+                        <tr><td>Enqueue</td><td>O(1)</td><td>O(log n)</td></tr>
+                        <tr><td>Dequeue</td><td>O(1)</td><td>O(log n)</td></tr>
+                        <tr><td>Peek</td><td>O(1)</td><td>O(1)</td></tr>
+                        <tr><td>Search</td><td>O(n)</td><td>O(n)</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercises-section">
+            <h2>🎯 Exercices Interactifs</h2>
+
+            <div class="exercise">
+                <h3>Exercice 1 : Simulation de Caisse</h3>
+                <p>Simulez une file d'attente à une caisse de supermarché :</p>
+                <ul>
+                    <li>Les clients arrivent dans l'ordre A, B, C, D, E</li>
+                    <li>Servez-les un par un (FIFO)</li>
+                    <li>Observez l'ordre de service</li>
+                </ul>
+                <button onclick="loadCheckoutExercise()" class="btn btn-primary">Lancer Simulation</button>
+                <div id="checkoutResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 2 : Triage Hospitalier</h3>
+                <p>Utilisez une file de priorité pour le triage hospitalier :</p>
+                <ul>
+                    <li>Priorité 1 : Urgence vitale (rouge)</li>
+                    <li>Priorité 2 : Urgent (orange)</li>
+                    <li>Priorité 3 : Stable (jaune)</li>
+                    <li>Priorité 4 : Mineur (vert)</li>
+                </ul>
+                <button onclick="loadTriageExercise()" class="btn btn-primary">Lancer Triage</button>
+                <div id="triageResult"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercice 3 : Comparaison FIFO vs Priorité</h3>
+                <p>Testez les deux types de files avec les mêmes données :</p>
+                <ul>
+                    <li>Tâches avec différentes priorités</li>
+                    <li>Comparez l'ordre de traitement</li>
+                    <li>Analysez les différences de comportement</li>
+                </ul>
+                <button onclick="compareQueueTypes()" class="btn btn-primary">Comparer Types</button>
+                <div id="comparisonResult"></div>
+            </div>
+        </div>
+
+        <!-- Section Chapitre Complet -->
+        <div class="chapter-content">
+            <h2>📖 Chapitre 6 - Les Files d'Attente</h2>
+            <div class="chapter-text" id="chapter-content">
+                <!-- Le contenu du chapitre sera chargé ici -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-main">
+                <h3>🎓 Exercices Interactifs - Algorithmes et Structures de Données</h3>
+                <p><strong>Chapitre 6 - Les Files d'Attente</strong></p>
+                <p>Découvrez FIFO et les files de priorité</p>
+            </div>
+
+            <div class="chapter-ref">
+                <p>
+                    <strong>📖 Référence complète :</strong> Chapitre 6 du manuel<br>
+                    <strong>🎯 Objectif :</strong> Comprendre FIFO et les files de priorité<br>
+                    <strong>⏱️ Durée estimée :</strong> 35 minutes<br>
+                    <strong>💡 Prérequis :</strong> Notions de base en structures de données et algorithmes
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-btn">🏠 Menu Principal</a>
+                <a href="../README.md" class="footer-btn">📚 Documentation</a>
+                <a href="../chapters/06-queues.md" class="footer-btn">📖 Chapitre Complet</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Manuel d'Algorithmes et Structures de Données</p>
+                <p>Créé avec ❤️ pour l'apprentissage de l'algorithmique</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../chapters-data.js"></script>
+    <script src="queue-visualizer.js"></script>
+    <script src="../chapter-loader.js"></script>
+    <script>
+        // Initialiser Highlight.js pour la coloration syntaxique
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+
+        // Initialiser le chargeur de chapitre
+        initChapterLoader('06');
+    </script>
+</body>
+</html>
+
+
+
